@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
+
 export default class Home extends Component {
+
+componentDidMount() {
+fetch(`http://78.153.6.107/api/cab/2`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log('Request successful', data);
+        return data;
+      })
+      .catch(function(error) {
+        console.log('Request failed', error)
+      });
+ }
+
     render() {
         var value = "Требуются действия", text = [], bufer = "";
         function status(buf) {
@@ -21,7 +37,15 @@ export default class Home extends Component {
             }
             return bufer;
         }
-        status([0, 1, 0, 0, 1, 0, 1, 1, 0])
+
+        const k314son = new Map([["cab", "304"], ["light1", "1"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
+        const k315son = new Map([["cab", "305"], ["light1", "1"], ["light1 id", 1], ["door1", "1"], ["window1", "1"], ["window1 id", 6]]);
+        const k316son = new Map([["cab", "306"], ["light1", "1"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
+
+        status([k314son.get("door1"), k314son.get("window1"), k314son.get("light1"),
+            k315son.get("door1"), k315son.get("window1"), k315son.get("light1"),
+            k316son.get("door1"), k316son.get("window1"), k316son.get("light1")])
+
         return (
             <div className="fon">
                 <h1 className="homework" >{value}</h1>

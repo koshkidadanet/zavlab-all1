@@ -25,7 +25,9 @@ export default class k315 extends Component {
             return k1, k2, k3;
         }
 
-        status(1, 0, 1);
+        const k315son = new Map([["cab", "305"], ["light1", "1"], ["light1 id", 1], ["door1", "1"], ["window1", "1"], ["window1 id", 6]]);
+        status(k315son.get("door1"), k315son.get("window1"), k315son.get("light1"));
+
         return (
             <div>
                 <div className="fon">

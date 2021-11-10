@@ -5,8 +5,22 @@ import Open from './open.svg';
 import Close from './close.svg';
 
 export default class k314 extends Component {
+
+componentDidMount() {
+fetch(`http://78.153.6.107/api/cab/2`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log('Request successful', data);
+        return data;
+      })
+      .catch(function(error) {
+        console.log('Request failed', error)
+      });
+ }
     render() {
-        var k1 = On, k2 = Open, k3 = Open, buf314;
+        var k1 = On, k2 = Open, k3 = Open, buf314,s;
         function status(d, w, l) {
             if (d == 1) {
                 k1 = Open;
@@ -29,7 +43,9 @@ export default class k314 extends Component {
             return k1, k2, k3, buf314;
         }
 
-        status(0, 0, 0);
+        const k314son = new Map([["cab", "304"], ["light1", "1"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
+        status(k314son.get("door1"), k314son.get("window1"), k314son.get("light1"));
+
         return (
             <div>
                 <div className="fon">

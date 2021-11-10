@@ -3,7 +3,6 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import logo from './logo_IST_white_full.png';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-
 import Home from '../Pages/Home1';
 import k314 from '../Pages/k314';
 import k315 from '../Pages/k315';
