@@ -6,21 +6,39 @@ import Close from './close.svg';
 
 export default class k314 extends Component {
 
-componentDidMount() {
-fetch(`http://78.153.6.107/api/cab/2`)
-      .then(function(response) {
+constructor(props) {
+    super(props);
+    this.state = {
+      posts: []
+    }
+  }
+  componentDidMount() {
+    var a = ""
+    fetch(`http://78.153.6.107/api/cab/1`)
+    .then(response => response.json())
+    .then(json => this.setState({ posts: json }))
+  }
+    render() {
+        const { posts } = this.state;
+        console.log(posts)
+        /*var k314son = new Map([["cab", "314"], ["light1", "0"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
+        fetch(`http://78.153.6.107/api/cab/2`).then(function(response)
+        {
         return response.json();
-      })
+        })
       .then(function(data) {
         console.log('Request successful', data);
-        return data;
+        k314son.set('door1',data['door']);
+        status(k314son.get("door1"), k314son.get("window1"), k314son.get("light1"));
       })
       .catch(function(error) {
         console.log('Request failed', error)
-      });
- }
-    render() {
-        var k1 = On, k2 = Open, k3 = Open, buf314,s;
+      });*/
+        //var k314son = new Map([["cab", "314"], ["light1", "0"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
+        const door = posts['door']
+        const window = posts['window']
+        const light = posts['light']
+        var k1 = On, k2 = Open, k3 = Open, buf314;
         function status(d, w, l) {
             if (d == 1) {
                 k1 = Open;
@@ -42,9 +60,7 @@ fetch(`http://78.153.6.107/api/cab/2`)
             }
             return k1, k2, k3, buf314;
         }
-
-        const k314son = new Map([["cab", "304"], ["light1", "1"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
-        status(k314son.get("door1"), k314son.get("window1"), k314son.get("light1"));
+        status(door,window,light);
 
         return (
             <div>

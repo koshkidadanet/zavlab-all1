@@ -4,6 +4,28 @@ import Off from './off.png';
 import Open from './open.svg';
 import Close from './close.svg';
 export default class k315 extends Component {
+state = {
+    door: "1",
+    light: "1",
+    window: "1"
+  }
+
+  componentDidMount() {
+    fetch(`http://78.153.6.107/api/cab/2`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(
+      (result) => {
+        let { door,light,window } = result.main
+        this.setState({
+          door,light,window
+        });
+      })
+      .catch(function (error) {
+        console.log('Request failed', error)
+      });
+  }
     render() {
         var k1 = On, k2 = Open, k3 = Open;
         function status(d, w, l) {
