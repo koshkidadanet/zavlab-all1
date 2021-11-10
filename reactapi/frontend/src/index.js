@@ -2,7 +2,6 @@ import App from './components/App';
 import React from 'react';
 import { Component, Fragment } from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
 /*
 const reportWebVitals = onPerfEntry => {
     if (onPerfEntry && onPerfEntry instanceof Function) {

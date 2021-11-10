@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'D:/site/zavlab-all1/reactapi/frontend/src/index.css';
 export default class Home extends Component {
     render() {
         var value = "Требуются действия", text = [], bufer = "";
