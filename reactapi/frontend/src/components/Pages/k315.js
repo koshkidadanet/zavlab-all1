@@ -4,29 +4,22 @@ import Off from './off.png';
 import Open from './open.svg';
 import Close from './close.svg';
 export default class k315 extends Component {
-state = {
-    door: "1",
-    light: "1",
-    window: "1"
+constructor(props) {
+    super(props);
+    this.state = {
+      posts: []
+    }
   }
-
   componentDidMount() {
     fetch(`http://78.153.6.107/api/cab/2`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(
-      (result) => {
-        let { door,light,window } = result.main
-        this.setState({
-          door,light,window
-        });
-      })
-      .catch(function (error) {
-        console.log('Request failed', error)
-      });
+    .then(response => response.json())
+    .then(json => this.setState({ posts: json }))
   }
     render() {
+        const { posts } = this.state;
+        const door = posts['door']
+        const window = posts['window']
+        const light = posts['light']
         var k1 = On, k2 = Open, k3 = Open;
         function status(d, w, l) {
             if (d == 1) {
@@ -47,8 +40,8 @@ state = {
             return k1, k2, k3;
         }
 
-        const k315son = new Map([["cab", "305"], ["light1", "1"], ["light1 id", 1], ["door1", "1"], ["window1", "1"], ["window1 id", 6]]);
-        status(k315son.get("door1"), k315son.get("window1"), k315son.get("light1"));
+        status(door,window,light);
+        console.log(door,window,light)
 
         return (
             <div>

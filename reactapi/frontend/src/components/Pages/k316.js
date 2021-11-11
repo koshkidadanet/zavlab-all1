@@ -4,7 +4,23 @@ import Off from './off.png';
 import Open from './open.svg';
 import Close from './close.svg';
 export default class k316 extends Component {
+constructor(props) {
+    super(props);
+    this.state = {
+      posts: []
+    }
+  }
+  componentDidMount() {
+    var a = ""
+    fetch(`http://78.153.6.107/api/cab/3`)
+    .then(response => response.json())
+    .then(json => this.setState({ posts: json }))
+  }
     render() {
+        const { posts } = this.state;
+        const door = posts['door']
+        const window = posts['window']
+        const light = posts['light']
         var k1 = On, k2 = Open, k3 = Open;
         function status(d, w, l) {
             if (d == 1) {
@@ -25,8 +41,7 @@ export default class k316 extends Component {
             return k1, k2, k3;
         }
 
-        const k316son = new Map([["cab", "306"], ["light1", "1"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
-        status(k316son.get("door1"), k316son.get("window1"), k316son.get("light1"));
+        status(door,window,light);
         return (
             <div>
                 <div className="fon">

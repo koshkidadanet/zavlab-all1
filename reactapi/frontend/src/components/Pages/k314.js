@@ -13,53 +13,35 @@ constructor(props) {
     }
   }
   componentDidMount() {
-    var a = ""
     fetch(`http://78.153.6.107/api/cab/1`)
     .then(response => response.json())
     .then(json => this.setState({ posts: json }))
   }
     render() {
         const { posts } = this.state;
-        console.log(posts)
-        /*var k314son = new Map([["cab", "314"], ["light1", "0"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
-        fetch(`http://78.153.6.107/api/cab/2`).then(function(response)
-        {
-        return response.json();
-        })
-      .then(function(data) {
-        console.log('Request successful', data);
-        k314son.set('door1',data['door']);
-        status(k314son.get("door1"), k314son.get("window1"), k314son.get("light1"));
-      })
-      .catch(function(error) {
-        console.log('Request failed', error)
-      });*/
-        //var k314son = new Map([["cab", "314"], ["light1", "0"], ["light1 id", 1], ["door1", "0"], ["window1", "0"], ["window1 id", 6]]);
         const door = posts['door']
         const window = posts['window']
         const light = posts['light']
-        var k1 = On, k2 = Open, k3 = Open, buf314;
+        var k1 = On, k2 = Open, k3 = Open;
         function status(d, w, l) {
             if (d == 1) {
                 k1 = Open;
-                buf314 += 1;
             } else {
                 k1 = Close;
             }
             if (w == 1) {
                 k2 = Open;
-                buf314 += 1;
             } else {
                 k2 = Close;
             }
             if (l == 1) {
                 k3 = On;
-                buf314 += 1;
             } else {
                 k3 = Off;
             }
-            return k1, k2, k3, buf314;
+            return k1, k2, k3;
         }
+
         status(door,window,light);
 
         return (
