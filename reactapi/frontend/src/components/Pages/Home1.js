@@ -1,31 +1,8 @@
 import React, { Component } from 'react';
 
 export default class Home extends Component {
-constructor(props) {
-    super(props);
-    this.state = {
-      posts: []
-    }
-  }
-componentDidMount(){
-    fetch(`http://78.153.6.107/api/cab/1`)
-    .then(response => response.json())
-    .then(json => this.setState({ posts: json }))
-  }
- componentDidMount() {
-    fetch(`http://78.153.6.107/api/cab/2`)
-    .then(response => response.json())
-    .then(json => this.setState({ posts: json }))
-  }
- componentDidMount() {
-    fetch(`http://78.153.6.107/api/cab/3`)
-    .then(response => response.json())
-    .then(json => this.setState({ posts: json }))
-  }
-
     render() {
         var value = "Требуются действия", text = [], bufer = "";
-        const { posts } = this.state;
         function status(buf) {
             for (let i = 1; i < buf.length; i=i+3) {            
                 if ((buf[i - 1] == 1) || (buf[i] == 1) || (buf[i + 1] == 1) ) {

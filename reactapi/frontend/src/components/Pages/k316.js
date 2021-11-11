@@ -16,6 +16,12 @@ constructor(props) {
     .then(response => response.json())
     .then(json => this.setState({ posts: json }))
   }
+   componentDidUpdate() {
+    fetch(`http://78.153.6.107/api/cab/3`)
+    .then(response => response.json())
+    .then(json => this.setState({ posts: json }))
+
+  }
     render() {
         const { posts } = this.state;
         const door = posts['door']
